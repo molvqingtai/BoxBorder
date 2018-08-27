@@ -1,0 +1,20 @@
+.title {
+    font-size: 14px;
+}
+
+.options-inner {
+    margin: 30px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.label {
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+}
+
+.radio:checked~.text {
+    color: rgb(51, 103, 214);
+}
