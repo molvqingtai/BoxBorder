@@ -1,7 +1,7 @@
 let options = {
     getOptions() {
-        chrome.storage.sync.get('remember', (v) => {
-            let radioId = v.remember ? 'remember' : 'disable';
+        chrome.storage.sync.get('remember', (o) => {
+            let radioId = o.remember ? 'remember' : 'disable';
             document.getElementById(radioId).checked = true;
         })
     },
