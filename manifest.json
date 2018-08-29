@@ -26,6 +26,7 @@
         "chrome_style": true
     },
     "permissions": [
-        "storage"
+        "storage",
+        "tabs","<all_urls>"
     ]
 }

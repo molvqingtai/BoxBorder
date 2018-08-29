@@ -9,6 +9,7 @@
 
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
     document.querySelectorAll('*').forEach((e) => {
         if (request) {
             e.style.outline = '1px solid #' + (~~(Math.random() * (1 << 24))).toString(16);
