@@ -14,22 +14,18 @@ let boxBorder = {
                     }
 
                 } else {
-                    console.error('error:', 'Tab is notfound!')
                     this.highlightTabs.push({ id: tabs[0].id, highlighted: true })
                     tabIndex = this.highlightTabs.length - 1;
                 }
                 chrome.tabs.executeScript(tabs[0].id, { file: 'js/main.js' }, () => {
                     chrome.tabs.sendMessage(tabs[0].id, this.highlightTabs[tabIndex].highlighted);
-                });
+                })
             }
 
         })
 
     },
     addListener() {
-        chrome.runtime.onInstalled.addListener(() => {
-            console.log('hello')
-        })
         chrome.browserAction.onClicked.addListener(() => {
             this.setTab(false);
         })
