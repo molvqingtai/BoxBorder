@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         if (request) {
             e.style.outline = '1px solid #' + (~~(Math.random() * (1 << 24))).toString(16);
         } else {
-            e.style.outline = '';
+            e.style.outline = 'none';
         }
     })
 })

@@ -17,9 +17,12 @@ let boxBorder = {
                     this.highlightTabs.push({ id: tabs[0].id, highlighted: true })
                     tabIndex = this.highlightTabs.length - 1;
                 }
-                chrome.tabs.executeScript(tabs[0].id, { file: 'js/main.js' }, () => {
-                    chrome.tabs.sendMessage(tabs[0].id, this.highlightTabs[tabIndex].highlighted);
-                })
+                if (!tabs[0].url.startsWith('chrome://')) {
+                    chrome.tabs.executeScript(tabs[0].id, { file: 'js/main.js' }, (e) => {
+                        chrome.tabs.sendMessage(tabs[0].id, this.highlightTabs[tabIndex].highlighted);
+                    })
+                }
+
             }
 
         })
@@ -38,7 +41,7 @@ let boxBorder = {
         chrome.tabs.onReplaced.addListener((addedTabId, removedTabId) => {
             this.highlightTabs.push({ id: addedTabId, highlighted: false });
             this.highlightTabs.splice(this.findTabIndex(removedTabId), 1)
-            console.log('onReplaced:', addedTabId, removedTabId)
+            // console.log('onReplaced:', addedTabId, removedTabId)
         })
         chrome.tabs.onUpdated.addListener((tabId, complete) => {
             if (complete.status === 'complete') {
